@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.qqq.remindme.MessagesFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:id="@+id/textAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Messages All: "
+        android:layout_gravity="center_vertical"
+        android:layout_below="@+id/textSent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Messages Sent: "
+        android:id="@+id/textSent"
+        android:layout_gravity="center_vertical"
+        android:layout_below="@+id/textReceive" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Messages Receive: "
+        android:id="@+id/textReceive"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="110dp"
+        />
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/chart_sms"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="210dp"
+        android:layout_marginBottom="10dp"
+        />
+
+
+
+</RelativeLayout>

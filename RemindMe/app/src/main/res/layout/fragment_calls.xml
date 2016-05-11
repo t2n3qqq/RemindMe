@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.qqq.remindme.CallsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:id="@+id/callsTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Calls1"
+        android:layout_gravity="center"
+        android:layout_marginTop="110dp"/>
+    <TextView
+        android:id="@+id/callsIncoming"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Calls2"
+        android:layout_gravity="center"
+        android:layout_below="@+id/callsTotal"/>
+    <TextView
+        android:id="@+id/callsOutgoing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Calls3"
+        android:layout_gravity="center"
+        android:layout_below="@+id/callsIncoming"/>
+    <TextView
+        android:id="@+id/callsMissed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Calls4"
+        android:layout_gravity="center"
+        android:layout_below="@+id/callsOutgoing"/>
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/chart_calls"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="230dp"
+        android:layout_marginBottom="10dp"
+        />
+
+
+
+</RelativeLayout>

@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:paddingTop="7dp"
+    tools:context="com.qqq.remindme.DataFragment"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:id="@+id/data_total"
+        android:layout_marginTop="120dp"
+        android:layout_marginLeft="5dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:id="@+id/data_limit"
+        android:layout_marginTop="120dp"
+        android:layout_alignRight="@id/data_total"
+        android:layout_marginLeft="300dp"/>
+
+
+    <ProgressBar
+        android:id="@+id/firstBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_below="@+id/data_total"
+        android:progressDrawable="@drawable/progress_bar"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="15dp"/>
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@android:id/list"
+        android:layout_below="@+id/firstBar">
+    </ListView>
+    <TextView
+        android:id="@+id/textData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingTop="5dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="5dp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textDataMb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        android:paddingLeft="300dp"
+        android:paddingBottom="5dp"
+        android:textStyle="bold" />
+
+</RelativeLayout>
