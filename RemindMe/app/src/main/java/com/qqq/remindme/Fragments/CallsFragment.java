@@ -1,4 +1,4 @@
-package com.qqq.remindme;
+package com.qqq.remindme.Fragments;
 
 
 import android.content.ContentValues;
@@ -19,11 +19,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.qqq.remindme.Call;
+import com.qqq.remindme.MainActivity;
+import com.qqq.remindme.R;
 
 import java.lang.reflect.Array;
 import java.text.DateFormat;
@@ -56,11 +60,12 @@ public class CallsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_calls, container, false);
 
         BarChart barChart = (BarChart) view.findViewById(R.id.chart_calls);
+        LineChart lineChart = (LineChart) view.findViewById(R.id.linechart_calls);
 
         TextView textAll =(TextView) view.findViewById(R.id.callsTotal);
         TextView textIn =(TextView) view.findViewById(R.id.callsIncoming);
         TextView textOut =(TextView) view.findViewById(R.id.callsOutgoing);
-        TextView textMissed =(TextView) view.findViewById(R.id.callsMissed);
+//        TextView textMissed =(TextView) view.findViewById(R.id.callsMissed);
 
         String outgoing_type = Integer.toString(CallLog.Calls.OUTGOING_TYPE);
         String incoming_type = Integer.toString(CallLog.Calls.INCOMING_TYPE);
@@ -74,11 +79,12 @@ public class CallsFragment extends Fragment {
         textOut.setText("Outgoing calls count: " + c_out.getCount());
         textIn.setText("Incoming calls count: " + c_in.getCount());
         textAll.setText("Total calls count: " + c_all.getCount());
-        textMissed.setText("Missed calls count: " + c_missed.getCount());
+//        textMissed.setText("Missed calls count: " + c_missed.getCount());
 
         Call call = new Call();
         HashMap<String, Integer> callsDuration = call.getCallsCount(getActivity(), CallLog.Calls.INCOMING_TYPE);
         MainActivity.initGraph(barChart, callsDuration);
+        MainActivity.initGraphTest(lineChart, callsDuration);
 
         return view;
     }

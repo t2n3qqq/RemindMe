@@ -1,4 +1,4 @@
-package com.qqq.remindme;
+package com.qqq.remindme.Fragments;
 
 
 import android.Manifest;
@@ -27,6 +27,8 @@ import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.qqq.remindme.MainActivity;
+import com.qqq.remindme.R;
 
 import java.io.Console;
 import java.lang.reflect.Array;

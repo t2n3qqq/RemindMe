@@ -4,6 +4,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.qqq.remindme.Fragments.CallsFragment;
+import com.qqq.remindme.Fragments.DataFragment;
+import com.qqq.remindme.Fragments.MessagesFragment;
+import com.qqq.remindme.Fragments.SummaryFragment;
+
 /**
  * Created by qqq on 4/25/2016.
  */

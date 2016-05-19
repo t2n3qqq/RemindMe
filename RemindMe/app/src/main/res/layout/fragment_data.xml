@@ -2,9 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="50dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingTop="7dp"
-    tools:context="com.qqq.remindme.DataFragment"
-    >
+    tools:context=".Fragments.DataFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -33,7 +33,22 @@
         android:progressDrawable="@drawable/progress_bar"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="15dp"/>
+        android:layout_marginBottom="15dp" />
+
+    <com.github.lzyzsd.circleprogress.DonutProgress
+        android:id="@+id/donutData"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:donut_progress="70"
+        app:donut_max="100"
+        android:layout_below="@+id/firstBar"
+        android:layout_marginTop="25dp"
+        android:layout_centerHorizontal="true"
+        app:donut_finished_color="@color/colorPrimary"
+        app:donut_text_color="@color/colorPrimary"
+        app:donut_prefix_text="Used "
+        app:donut_inner_bottom_text_color="@color/colorPrimary"/>
+
 
 
     <ListView

@@ -1,10 +1,11 @@
-package com.qqq.remindme;
+package com.qqq.remindme.Fragments;
 
 
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.TrafficStats;
 import android.os.Bundle;
@@ -22,12 +23,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.net.NetworkInfo;
 
+import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.qqq.remindme.DB.DBHandler;
+import com.qqq.remindme.DB.DataInfo;
+import com.qqq.remindme.ListAdapter;
+import com.qqq.remindme.MainActivity;
+import com.qqq.remindme.R;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -49,16 +60,37 @@ public class DataFragment extends ListFragment {
     private long mStartRX = 0;
     private long mStartTX = 0;
 
+    private final String RX_FILE = "/sys/class/net/wlan0/statistics/rx_bytes";
+    private final String TX_FILE = "/sys/class/net/wlan0/statistics/tx_bytes";
+
     private String data[] = new String[] { "one", "two", "three", "four" };
 
     public DataFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("RESUME", "RESUME FRAGMENT");
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.d("RESUME", "CREATE FRAGMENT");
+        DBHandler dbHandler = new DBHandler(getActivity());
+        List<DataInfo> dataInfoList = dbHandler.getAllDataInfo("W");
+        long totalW = 0;
+        for(DataInfo di : dataInfoList){
+            totalW += di.getData();
+        }
+        float rx_w_bytes = readFile(RX_FILE);
+        float tx_w_bytes = readFile(TX_FILE);
+        float wifiData = rx_w_bytes + tx_w_bytes;
+        Log.d("NETWORK", "DATA FRAG RX: " + Float.toString(rx_w_bytes/1000000) + "; TX: " + tx_w_bytes/1000000
+                + "; Total: " + wifiData/1000000);
+
         View view = inflater.inflate(R.layout.fragment_data, container, false);
         TextView tv = (TextView)view.findViewById(R.id.data_total);
         TextView limitView = (TextView) view.findViewById(R.id.data_limit);
@@ -142,10 +174,15 @@ public class DataFragment extends ListFragment {
                     return (int)(TrafficStats.getUidRxBytes(arg1.uid) - TrafficStats.getUidRxBytes(arg0.uid));
                 }
             });
-            setListAdapter(listAdapter);
+            //setListAdapter(listAdapter);
         } else {
             Toast.makeText(getActivity().getApplicationContext(), "No application is running", Toast.LENGTH_LONG).show();
         }
+
+        DonutProgress donutProgress = (DonutProgress) view.findViewById(R.id.donutData);
+        donutProgress.setProgress((int)(100*totalW/1000000/DATA_LIMIT));
+        donutProgress.setInnerBottomText("Limit: " + DATA_LIMIT);
+
         return view;
     }
 
@@ -165,4 +202,33 @@ public class DataFragment extends ListFragment {
         Toast.makeText(getActivity().getApplicationContext(), "UID " + uid + " details...\n send: " + send/1000 + "kB" + " \n recived: " + recived/1000 + "kB", Toast.LENGTH_LONG).show();
 
     }
+
+    //    =======================================
+//    Read WiFi data from file
+//    =======================================
+    private long readFile(String fileName){
+        File file = new File(fileName);
+        BufferedReader br = null;
+        long bytes = 0;
+        try{
+            br = new BufferedReader(new FileReader(file));
+            String line = "";
+            line = br.readLine();
+            bytes = Long.parseLong(line);
+        }  catch (Exception e){
+            e.printStackTrace();
+            return 0;
+
+        } finally{
+            if (br != null)
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+        }
+
+        return bytes;
+    }
+//    =======================================
 }

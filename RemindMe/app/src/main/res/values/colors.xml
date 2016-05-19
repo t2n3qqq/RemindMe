@@ -5,4 +5,6 @@
     <color name="mainBackground">#e2e2e2</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorWhite">#FFFF</color>
+    <color name="card_shadow">#CABBBBBB</color>
+    <color name="colorBlack">#ca000000</color>
 </resources>
