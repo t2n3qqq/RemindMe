@@ -1,2 +1,2 @@
 # RemindMe
-test Project
+Android app.
